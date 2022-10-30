@@ -469,6 +469,12 @@ along with this software (see the LICENSE.md file). If not, see
         <relationship type="one" related="mantle.work.effort.WorkEffort"/>
         <relationship type="one" related="mantle.work.effort.Deliverable"/>
     </entity>
+    <entity entity-name="WorkEffortEmplPosition" package="mantle.work.effort" cache="never">
+        <field name="workEffortId" type="id" is-pk="true"/>
+        <field name="emplPositionId" type="id" is-pk="true"/>
+        <relationship type="one" related="mantle.work.effort.WorkEffort" short-alias="workEffort"/>
+        <relationship type="one" related="mantle.humanres.position.EmplPosition" short-alias="position"/>
+    </entity>
     <entity entity-name="WorkEffortFacility" package="mantle.work.effort" cache="never">
         <field name="workEffortId" type="id" is-pk="true"/>
         <field name="facilityId" type="id" is-pk="true"/>
@@ -505,6 +511,7 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="expectationEnumId" type="id"/>
         <field name="workTypeEnumId" type="id"/>
         <field name="emplPositionClassId" type="id"/>
+        <field name="emplPositionId" type="id"/>
         <field name="comments" type="text-medium"/>
         <field name="mustRsvp" type="text-indicator"/>
         <field name="receiveNotifications" type="text-indicator"/>
@@ -523,6 +530,7 @@ along with this software (see the LICENSE.md file). If not, see
         <relationship type="one" title="WorkType" related="moqui.basic.Enumeration">
             <key-map field-name="workTypeEnumId"/></relationship>
         <relationship type="one" related="mantle.humanres.position.EmplPositionClass" short-alias="positionClass"/>
+        <relationship type="one" related="mantle.humanres.position.EmplPosition" short-alias="position"/>
         <relationship type="many" related="moqui.security.UserAccount" short-alias="userAccounts">
             <key-map field-name="partyId"/></relationship>
         <seed-data>
