@@ -629,7 +629,7 @@ along with this software (see the LICENSE.md file). If not, see
             <key-map field-name="priceUomId"/></relationship>
         <relationship type="one" title="Term" related="moqui.basic.Uom" short-alias="termUom">
             <key-map field-name="termUomId"/></relationship>
-        <relationship type="one" related="ProductStore" short-alias="store"/>
+        <relationship type="one" related="mantle.product.store.ProductStore" short-alias="store"/>
         <relationship type="one" related="mantle.other.tax.TaxAuthority" short-alias="taxAuthority"/>
 
         <relationship type="one" title="SupplierPreferredOrder" related="moqui.basic.Enumeration" short-alias="supplierOrder">
@@ -715,10 +715,15 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="thruDate" type="date-time"/>
         <field name="requiredWork" type="text-indicator">
             <description>If Y require WorkEffort Status of Complete, Closed, or Cancelled to consider OrderItem fulfilled</description></field>
+        <field name="cloneOnStatusId" type="id">
+            <description>OrderPart or OrderHeader status when the WorkEffort should be cloned and associated with the
+                corresponding OrderItem with an OrderItemWorkEffort record</description></field>
         <field name="forStatusId" type="id">
-            <description>Task must be Complete or Closed before change to this status (soft rule, depending on code in place)</description></field>
+            <description>Task must be Complete or Closed before change to this order status (soft rule, depending on code in place)</description></field>
         <relationship type="one" related="mantle.product.Product" short-alias="product"/>
         <relationship type="one" related="mantle.work.effort.WorkEffort" short-alias="workEffort"/>
+        <relationship type="one" title="CloneOnOrderHeader" related="moqui.basic.StatusItem" short-alias="cloneOnStatus">
+            <key-map field-name="forStatusId"/></relationship>
         <relationship type="one" title="OrderHeader" related="moqui.basic.StatusItem" short-alias="forStatus">
             <key-map field-name="forStatusId"/></relationship>
     </entity>

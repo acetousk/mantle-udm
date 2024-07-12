@@ -125,10 +125,13 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="fromDate" type="date-time" is-pk="true"/>
         <field name="thruDate" type="date-time"/>
         <field name="emailTemplateId" type="id"/>
-        <relationship type="one" related="ContactList"/>
+        <field name="wikiPageCategoryId" type="id"/>
+        <relationship type="one" related="mantle.marketing.contact.ContactList"/>
         <relationship type="one" title="ContactListEmailType" related="moqui.basic.Enumeration">
             <key-map field-name="emailTypeEnumId"/></relationship>
         <relationship type="one" related="moqui.basic.email.EmailTemplate"/>
+        <relationship type="one" related="moqui.resource.wiki.WikiPageCategory" short-alias="wikiPageCategory"/>
+        <relationship type="many" related="moqui.resource.wiki.WikiBlogCategory" short-alias="wikiBlogs"/>
         <seed-data>
             <!-- Contact List Email Type -->
             <moqui.basic.EnumerationType description="Contact List Email Type" enumTypeId="ContactListEmailType"/>
@@ -202,7 +205,7 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="marketSegmentId" type="id" is-pk="true"/>
         <field name="fromDate" type="date-time" is-pk="true"/>
         <field name="thruDate" type="date-time"/>
-        <relationship type="one" related="ProductCategory"/>
+        <relationship type="one" related="mantle.product.category.ProductCategory"/>
         <relationship type="one" related="mantle.marketing.segment.MarketSegment"/>
     </entity>
     <entity entity-name="MarketSegment" package="mantle.marketing.segment">
